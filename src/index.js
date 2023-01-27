@@ -7,9 +7,9 @@ module.exports = function check(str, bracketsConfig) {
   let stack = [];
 
   for (let el of bracketsConfig) {
-    let open = el[1];
-    let close = el[0];
-    brackets[open] = close;
+    let open = el[0];
+    let close = el[1];
+    brackets[close] = open;
   }
 
   for (let i = 0; i < str.length; i++) {
@@ -20,9 +20,5 @@ module.exports = function check(str, bracketsConfig) {
       stack.pop();
     else stack.push(str[i]);
   }
-  if (stack.length === 0) {
-    return true;
-  } else {
-    return false;
-  }
+  return !stack.length;
 };
